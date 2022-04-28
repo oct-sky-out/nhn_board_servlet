@@ -57,7 +57,16 @@ class UserCrudTest {
 
     @Test
     void getAllUser() {
-        fail("미구현");
+        putManyUser();
+        assertThat(this.userCrud.getAllUser()).hasSize(10);
+    }
+
+    private void putManyUser() {
+        for(int i = 0; i < 10; i++){
+            User user = mock(User.class);
+            when(user.getId()).thenReturn("" + i);
+            this.userCrud.add(user);
+        }
     }
 
     private User makeUserMock() {
