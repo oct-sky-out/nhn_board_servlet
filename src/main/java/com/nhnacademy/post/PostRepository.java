@@ -29,7 +29,7 @@ public class PostRepository implements PostCrud {
 
     @Override
     public Post getPostById(long id) {
-        return null;
+        return this.postMap.get(id);
     }
 
     @Override
