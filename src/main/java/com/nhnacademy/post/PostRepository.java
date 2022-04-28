@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class PostRepository implements PostCrud {
     public static final PostRepository INSTANCE = new PostRepository();
-    private Map<Long, Post> postMap = new HashMap<>();
+    private final Map<Long, Post> postMap = new HashMap<>();
 
     private PostRepository() {
     }
@@ -19,8 +19,8 @@ public class PostRepository implements PostCrud {
     }
 
     @Override
-    public void modify(Post post) {
-
+    public Post modify(Post post) {
+        return postMap.replace(post.getId(), post);
     }
 
     @Override
