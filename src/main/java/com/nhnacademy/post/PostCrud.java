@@ -7,7 +7,7 @@ public interface PostCrud {
 
     void modify(Post post);
 
-    Post remove(long id);
+    Post remove(Post post);
 
     Post getPostById(long id);
 

@@ -36,12 +36,9 @@ class PostCrudTest {
         when(post.getId()).thenReturn(1L);
         assertThat(postCrud.register(post)).isEqualTo(1L);
 
-        Post removedPost = postCrud.remove(post.getId());
+        Post removedPost = postCrud.remove(post);
         assertThat(removedPost).isEqualTo(this.post);
-
         verify(post, times(3)).getId();
-
-
     }
 
     @Test
