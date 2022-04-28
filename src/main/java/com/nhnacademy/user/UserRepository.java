@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class UserRepository implements UserCrud {
     public static final UserRepository INSTANCE = new UserRepository();
@@ -26,7 +25,7 @@ public class UserRepository implements UserCrud {
 
     @Override
     public User remove(User user) {
-        return null;
+        return this.userList.remove(user.getId());
     }
 
     @Override
