@@ -19,7 +19,7 @@ public class UserRepository implements UserCrud {
 
     @Override
     public User modify(User user) {
-        return null;
+        return this.userList.replace(user.getId(), user);
     }
 
     @Override
