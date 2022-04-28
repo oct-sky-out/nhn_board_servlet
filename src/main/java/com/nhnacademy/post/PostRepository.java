@@ -3,7 +3,6 @@ package com.nhnacademy.post;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class PostRepository implements PostCrud {
     public static final PostRepository INSTANCE = new PostRepository();
@@ -25,7 +24,7 @@ public class PostRepository implements PostCrud {
 
     @Override
     public Post remove(long id) {
-        return null;
+        return this.postMap.remove(id);
     }
 
     @Override
