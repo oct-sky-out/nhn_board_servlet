@@ -52,5 +52,10 @@ class PostCrudTest {
 
     @Test
     void getPosts() {
+        when(post.getId()).thenReturn(1L);
+        assertThat(postCrud.register(post)).isEqualTo(1L);
+
+        assertThat(postCrud.getPosts()).hasSize(1);
+        verify(post, times(2)).getId();
     }
 }

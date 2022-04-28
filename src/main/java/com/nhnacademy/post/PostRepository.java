@@ -1,5 +1,6 @@
 package com.nhnacademy.post;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,6 @@ public class PostRepository implements PostCrud {
 
     @Override
     public List<Post> getPosts() {
-        return null;
+        return new ArrayList<>(this.postMap.values());
     }
 }
