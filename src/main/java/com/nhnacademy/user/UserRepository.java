@@ -1,18 +1,20 @@
 package com.nhnacademy.user;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserRepository implements UserCrud {
     public static final UserRepository INSTANCE = new UserRepository();
-    private final List<User> userList = new ArrayList<>();
+    private final Map<String, User> userList = new HashMap<>();
 
     private UserRepository() {
     }
 
     @Override
     public User add(User user) {
-        return null;
+        userList.put(user.getId(), user);
+        return user;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class UserRepository implements UserCrud {
 
     @Override
     public User getUserById(String id) {
-        return null;
+        return userList.get(id);
     }
 
     @Override
