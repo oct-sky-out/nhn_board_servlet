@@ -3,6 +3,8 @@ package com.nhnacademy.post;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.nhnacademy.commnicate.Communicable;
@@ -18,17 +20,18 @@ class PostCommunicableTest {
     Communicable api;
     HttpServletRequest req;
     HttpServletResponse res;
+    PostRepository repository;
 
     @BeforeEach
     void setUp() {
         req = mock(HttpServletRequest.class);
         res = mock(HttpServletResponse.class);
+        repository = mock(PostRepository.class);
     }
 
     @Test
     @DisplayName("게시글 등록 후 등록된 게시글 화면으로 가는가?")
     void postPostTest() {
-        PostRepository repository = mock(PostRepository.class);
         api = new PostPost(repository);
         List<Post> postList = new ArrayList<>();
         postList.add(any());
@@ -48,9 +51,13 @@ class PostCommunicableTest {
     @Test
     @DisplayName("게시글 수정시 수정이 반영되는가?")
     void postPutTest() {
-        PostRepository repository = mock(PostRepository.class);
         api = new PostPut(repository);
-        Post modifiedPost = getPost(2, "before", "before content", "author1");
+        Post modifiedPost = new Post();
+        modifiedPost.setId(2L);
+        modifiedPost.setTitle("before");
+        modifiedPost.setContent("before content");
+        modifiedPost.setAuthor("author1");
+
 
         // 1. 파라미터로 id가 들어옴// 2. 수정한 내용이 같이 들어온다
         when(req.getParameter("id")).thenReturn("" + modifiedPost.getId());
@@ -63,12 +70,15 @@ class PostCommunicableTest {
         assertThat(api.communicate(req, res)).isEqualTo("/posts?id=2.nhn");
     }
 
-    Post getPost(long id, String title, String content, String author) {
-        Post post = new Post();
-        post.setId(id);
-        post.setTitle(title);
-        post.setContent(content);
-        post.setAuthor(author);
-        return post;
+    @Test
+    @DisplayName("게시글 삭제시 삭제가 완료되고, 메인 페이지로 이동해야한다.")
+    void postDeleteTest() {
+        api = new PostDelete(repository);
+        Post deleteTarget = mock(Post.class);
+
+        when(req.getParameter("id")).thenReturn("1");
+        when(repository.remove(1L)).thenReturn(deleteTarget);
+
+        assertThat(api.communicate(req, res)).isEqualTo("/");
     }
 }

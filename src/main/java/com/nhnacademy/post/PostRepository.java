@@ -24,8 +24,8 @@ public class PostRepository implements PostCrud {
     }
 
     @Override
-    public Post remove(Post post) {
-        return this.postMap.remove(post.getId());
+    public Post remove(long id) {
+        return this.postMap.remove(id);
     }
 
     @Override

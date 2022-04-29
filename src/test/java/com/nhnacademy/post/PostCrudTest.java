@@ -38,10 +38,10 @@ class PostCrudTest {
         when(post.getId()).thenReturn(1L);
         assertThat(postCrud.register(post)).isEqualTo(1L);
 
-        Post removedPost = postCrud.remove(post);
+        Post removedPost = postCrud.remove(1L);
         assertThat(removedPost).isEqualTo(this.post);
-        assertThat(postCrud.getPosts()).hasSize(0);
-        verify(post, times(3)).getId();
+        assertThat(postCrud.getPosts()).isEmpty();
+        verify(post, times(2)).getId();
     }
 
     @Test
