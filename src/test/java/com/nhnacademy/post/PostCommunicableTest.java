@@ -81,4 +81,24 @@ class PostCommunicableTest {
 
         assertThat(api.communicate(req, res)).isEqualTo("/");
     }
+
+    @Test
+    @DisplayName("전체 게시판을 조회한다.")
+    void postsInquireTest() {
+        api = new PostListGet();
+        assertThat(api.communicate(req, res)).isEqualTo("index.jsp");
+    }
+
+    @Test
+    @DisplayName("게시글 하나를 조회한다.")
+    void onePostInquireTest() {
+        api = new PostGet(repository);
+        Post post = new Post();
+        post.setId(2);
+
+        when(req.getParameter("id")).thenReturn("2");
+        when(repository.getPostById(2)).thenReturn(post);
+
+        assertThat(api.communicate(req, res)).isEqualTo("/post.jsp?id=2");
+    }
 }

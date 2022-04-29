@@ -14,7 +14,7 @@ public class PostRepository implements PostCrud {
 
     @Override
     public long register(Post post) {
-        postMap.put(post.getId(), post);
+            postMap.put(post.getId(), post);
         return post.getId();
     }
 
