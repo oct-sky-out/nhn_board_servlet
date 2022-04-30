@@ -2,12 +2,13 @@ package com.nhnacademy.user;
 
 import com.nhnacademy.commnicate.Communicable;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class LoginPost implements Communicable {
     private final UserRepository repository;
+    private final AtomicInteger loggedPeople = new AtomicInteger(0);
 
     public LoginPost(UserRepository repository) {
         this.repository = repository;
@@ -34,8 +35,9 @@ public class LoginPost implements Communicable {
     }
 
     private void setSession(HttpServletRequest req, String id) {
-        HttpSession session = req.getSession();
-        session.setAttribute("id", id);
+        req.getSession().setAttribute("id", id);
+        int logged = (int) req.getServletContext().getAttribute("logged");
+        req.getSession().getServletContext().setAttribute("logged", ++logged);
     }
 
     private boolean checkAdmin(String id, String password, AdminUser adminUser) {

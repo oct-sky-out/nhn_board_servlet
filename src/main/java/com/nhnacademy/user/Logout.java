@@ -13,6 +13,8 @@ public class Logout implements Communicable {
 
         if(Objects.nonNull(session)){
             session.invalidate();
+            int logged = (int) req.getServletContext().getAttribute("logged");
+            req.getServletContext().setAttribute("logged", --logged);
         }
 
         return "redirect:/posts.nhn";

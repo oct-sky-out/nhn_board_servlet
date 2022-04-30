@@ -58,6 +58,7 @@
             </div>
         </div>
     </form>
+    <jsp:include page="../components/footer.jsp"/>
 </div>
 <script src="upload.js"></script>
 </body>

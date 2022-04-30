@@ -47,7 +47,7 @@
                     <c:if test="${!fn:contains(user.getId(), \"admin\")}">
                         <form class="w-42" action="/user-delete.nhn" method="post">
                             <input type="hidden" name="id" value="${user.getId()}"/>
-                                <button class="button is-danger submit" type="submit">삭제</button>
+                            <button class="button is-danger submit" type="submit">삭제</button>
                         </form>
                     </c:if>
                 </div>
@@ -55,5 +55,6 @@
         </c:forEach>
     </ul>
 </div>
+<jsp:include page="components/footer.jsp"/>
 </body>
 </html>

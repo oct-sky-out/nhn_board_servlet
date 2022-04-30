@@ -12,6 +12,7 @@ public class BoardAppInitializer implements ServletContainerInitializer {
     public void onStartup(Set<Class<?>> set, ServletContext servletContext) {
         AdminUser adminUser = new AdminUser("admin", "1234", "관리자", null, true);
         servletContext.setAttribute("admin", adminUser);
+        servletContext.setAttribute("logged", 0);
         UserRepository.INSTANCE.add(adminUser);
     }
 }
