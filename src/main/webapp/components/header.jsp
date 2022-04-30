@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.Objects" %><%--
   Created by IntelliJ IDEA.
   User: oct_sky_out
@@ -19,13 +20,15 @@
         <!-- Right side -->
         <div class="level-right space-x-10">
             <p class="level-item"><a>한국어</a></p>
-            <%
-                HttpSession userSession = request.getSession(false);
-                if(Objects.equals(userSession.getAttribute("id"), "admin")) {%>
-             <p class="level-item"><a class="button is-success" href="/users.nhn"><strong>유저 관리</strong></a></p>
-            <%} else {%>
-            <p class="level-item"><a class="button is-success" href="/loginForm.jsp"><strong>로그인</strong></a></p>
-            <%}%>
+            <c:if test="${sessionScope.get(\"id\").length() > 0}">
+                <p class="level-item"><a class="button is-success" href="/logout.nhn"><strong>로그아웃</strong></a></p>
+            </c:if>
+            <c:if test="${sessionScope.get(\"id\") eq \"admin\"}">
+                <p class="level-item"><a class="button is-success" href="/users.nhn"><strong>유저 관리</strong></a></p>
+            </c:if>
+            <c:if test="${sessionScope.get(\"id\") eq null}">
+                <p class="level-item"><a class="button is-success" href="/loginForm.jsp"><strong>로그인</strong></a></p>
+            </c:if>
         </div>
     </nav>
 </header>

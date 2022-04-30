@@ -21,7 +21,7 @@ public class LoginPost implements Communicable {
 
         if(checkAdmin(id, password, adminUser)){
             setSession(req, id);
-            return "/index.jsp";
+            return "redirect:/posts.nhn";
         }
 
         User user = repository.getUserById(id);
@@ -30,7 +30,7 @@ public class LoginPost implements Communicable {
         }
 
         setSession(req, id);
-        return "/index.jsp";
+        return "redirect:/posts.nhn";
     }
 
     private void setSession(HttpServletRequest req, String id) {

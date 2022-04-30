@@ -12,6 +12,7 @@ import com.nhnacademy.post.PostPost;
 import com.nhnacademy.post.PostPut;
 import com.nhnacademy.post.PostRepository;
 import com.nhnacademy.user.LoginPost;
+import com.nhnacademy.user.Logout;
 import com.nhnacademy.user.UserDelete;
 import com.nhnacademy.user.UserGet;
 import com.nhnacademy.user.UserListGet;
@@ -86,6 +87,12 @@ public enum ControllerUtil implements ControllerConstructable {
         @Override
         public Communicable construct() {
             return new LoginPost(UserRepository.INSTANCE);
+        }
+    },
+    LOGOUT_GET(generate("/logout.nhn", GET)){
+        @Override
+        public Communicable construct() {
+            return new Logout();
         }
     };
 
