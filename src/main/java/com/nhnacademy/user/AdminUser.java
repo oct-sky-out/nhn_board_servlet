@@ -3,8 +3,8 @@ package com.nhnacademy.user;
 public class AdminUser extends User{
     private final boolean isAdmin;
 
-    public AdminUser(String id, String password, String name, byte[] image, boolean isAdmin) {
-        super(id, password, name, image);
+    public AdminUser(String id, String password, String name, String profileName, boolean isAdmin) {
+        super(id, password, name, profileName);
         this.isAdmin = isAdmin;
     }
 

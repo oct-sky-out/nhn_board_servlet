@@ -4,13 +4,13 @@ public class User {
     private String id;
     private String password;
     private String name;
-    private byte[] image;
+    private String profileName;
 
-    public User(String id, String password, String name, byte[] image) {
+    public User(String id, String password, String name, String profileName) {
         this.id = id;
         this.password = password;
         this.name = name;
-        this.image = image;
+        this.profileName = profileName;
     }
 
     public String getId() {
@@ -21,15 +21,15 @@ public class User {
         this.password = password;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
     }
 
     public String getPassword() {
         return this.password;
     }
 
-    public byte[] getImage() {
-        return this.image;
+    public String getProfileName() {
+        return this.profileName;
     }
 }

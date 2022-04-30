@@ -8,6 +8,7 @@ import com.nhnacademy.commnicate.Communicable;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import jdk.jfr.Description;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,5 +44,14 @@ public class UserCommunicableTest {
         when(repository.getAllUser()).thenReturn(new ArrayList<>());
 
         assertThat(api.communicate(req, res)).isEqualTo("/userList.jsp");
+    }
+
+    @Test
+    @DisplayName("관리자가 유저를 직접 추가함. 추가가 완료된 후 redirect:/userList.nhn로 이동한다.")
+    @Description("/userList.nhn는 userListGet으로 이동함을 뜻함.")
+    void userPostTest() {
+        api = new UserPost(repository);
+
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/userList.nhn");
     }
 }

@@ -76,17 +76,17 @@ class UserCrudTest {
         void modify() {
             User user = new User("mock", "1234", "example", null);
             String newPassword = "new password";
-            byte[] newImage = {1,2};
+            String profileName = "/file1.jpg";
 
             when(user.getId()).thenReturn("1");
             userCrud.add(user);
 
             user.setPassword(newPassword);
-            user.setImage(newImage);
+            user.setProfileName(profileName);
             User modifiedUser = userCrud.modify(user);
 
             assertThat(modifiedUser.getPassword()).isEqualTo(newPassword);
-            assertThat(modifiedUser.getImage()).isEqualTo(newImage);
+            assertThat(modifiedUser.getProfileName()).isEqualTo(profileName);
         }
     }
 }
