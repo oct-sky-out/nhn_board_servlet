@@ -1,6 +1,7 @@
 package com.nhnacademy;
 
 import com.nhnacademy.user.AdminUser;
+import com.nhnacademy.user.UserRepository;
 import java.util.Set;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
@@ -11,5 +12,6 @@ public class BoardAppInitializer implements ServletContainerInitializer {
     public void onStartup(Set<Class<?>> set, ServletContext servletContext) {
         AdminUser adminUser = new AdminUser("admin", "1234", "관리자", null, true);
         servletContext.setAttribute("admin", adminUser);
+        UserRepository.INSTANCE.add(adminUser);
     }
 }

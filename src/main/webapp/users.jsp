@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,11 +44,12 @@
                         <button type="submit" class="button is-success"><a
                                 href="/user.nhn?id=${user.getId()}">정보확인/변경하기</a></button>
                     </div>
-                    <form class="w-42" action="/user-delete.nhn" method="post">
-                        <input type="hidden" name="_method" value="delete"/>
-                        <input type="hidden" name="id" value="${user.getId()}"/>
-                        <button class="button is-danger submit" type="submit">삭제</button>
-                    </form>
+                    <c:if test="${!fn:contains(user.getId(), \"admin\")}">
+                        <form class="w-42" action="/user-delete.nhn" method="post">
+                            <input type="hidden" name="id" value="${user.getId()}"/>
+                                <button class="button is-danger submit" type="submit">삭제</button>
+                        </form>
+                    </c:if>
                 </div>
             </li>
         </c:forEach>

@@ -9,6 +9,7 @@ import com.nhnacademy.post.PostDelete;
 import com.nhnacademy.post.PostGet;
 import com.nhnacademy.post.PostListGet;
 import com.nhnacademy.post.PostPost;
+import com.nhnacademy.post.PostPut;
 import com.nhnacademy.post.PostRepository;
 import com.nhnacademy.user.LoginPost;
 import com.nhnacademy.user.UserDelete;
@@ -66,10 +67,10 @@ public enum ControllerUtil implements ControllerConstructable {
     POST_PUT(generate("/post-modify.nhn", POST)){
         @Override
         public Communicable construct() {
-            return new PostPost(PostRepository.INSTANCE);
+            return new PostPut(PostRepository.INSTANCE);
         }
     },
-    POST_DELETE(generate("/post-delete", POST)){
+    POST_DELETE(generate("/post-delete.nhn", POST)){
         @Override
         public Communicable construct() {
             return new PostDelete(PostRepository.INSTANCE);

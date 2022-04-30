@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +31,9 @@ public class ProfilePost extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("image/jpeg");
         String fileName = req.getParameter("fileName");
+        if(Objects.isNull(fileName)){
+            return;
+        }
 
         try (FileInputStream fis = new FileInputStream(UPLOAD_DIR + "/" + fileName);
              BufferedOutputStream bout = new BufferedOutputStream(resp.getOutputStream())

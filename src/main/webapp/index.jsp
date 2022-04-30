@@ -15,6 +15,9 @@
     </head>
     <body>
         <jsp:include page="components/header.jsp"/>
+        <div class="flex justify-end mx-5 my-10">
+            <button class="text-2xl button is-success"><a href="/post/create.jsp">게시글 작성</a></button>
+        </div>
         <c:if test="${postList.size() eq 0}">
             <div class="w-64 mx-auto my-10">
                 <h1 class="text-2xl">게시글이 존재하지않습니다.</h1>
@@ -25,7 +28,7 @@
                 <li class="flex w-full px-5">
                     <div class="w-full">
                         <div class="text-4xl">
-                            <a href="/post?id=${post.getId()}">${post.getTitle()} </a>
+                            <a href="/post.nhn?id=${post.getId()}">${post.getTitle()} </a>
                         </div>
                         <div class="text-lg">
                             <span>작성자 아이디 : ${post.getAuthor()}</span>

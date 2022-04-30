@@ -25,6 +25,6 @@ public class PostPut implements Communicable {
 
         Post modified = repository.modify(post);
 
-        return "/posts?id="+ modified.getId() +".nhn";
+        return "redirect:/post.nhn?id="+ modified.getId();
     }
 }

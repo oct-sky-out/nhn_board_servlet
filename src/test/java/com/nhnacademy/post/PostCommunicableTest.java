@@ -65,7 +65,7 @@ class PostCommunicableTest {
         when(repository.getPostById(2)).thenReturn(modifiedPost);
         when(repository.modify(modifiedPost)).thenReturn(modifiedPost);
 
-        assertThat(api.communicate(req, res)).isEqualTo("/posts?id=2.nhn");
+        assertThat(api.communicate(req, res)).isEqualTo("/post.nhn?id=2");
     }
 
     @Test
