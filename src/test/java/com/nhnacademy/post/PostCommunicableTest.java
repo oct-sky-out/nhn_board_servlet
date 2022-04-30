@@ -83,7 +83,7 @@ class PostCommunicableTest {
     @Test
     @DisplayName("전체 게시판을 조회한다.")
     void postsInquireTest() {
-        api = new PostListGet();
+        api = new PostListGet(repository);
         assertThat(api.communicate(req, res)).isEqualTo("index.jsp");
     }
 

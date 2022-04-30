@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.nhnacademy.frontservlet.FrontServlet;
 import java.io.IOException;
 import java.util.function.BiConsumer;
 import javax.servlet.RequestDispatcher;
