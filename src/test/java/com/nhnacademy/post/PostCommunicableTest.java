@@ -77,7 +77,7 @@ class PostCommunicableTest {
         when(req.getParameter("id")).thenReturn("1");
         when(repository.remove(1L)).thenReturn(deleteTarget);
 
-        assertThat(api.communicate(req, res)).isEqualTo("/");
+        assertThat(api.communicate(req, res)).isEqualTo("/posts.nhn");
     }
 
     @Test

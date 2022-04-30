@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: oct_sky_out
@@ -14,5 +15,24 @@
     </head>
     <body>
         <jsp:include page="components/header.jsp"/>
+        <c:if test="${postList.size() eq 0}">
+            <div class="w-64 mx-auto my-10">
+                <h1 class="text-2xl">게시글이 존재하지않습니다.</h1>
+            </div>
+        </c:if>
+        <ul class="w-full my-5">
+            <c:forEach var="post" items="${postList}">
+                <li class="flex w-full px-5">
+                    <div class="w-full">
+                        <div class="text-4xl">
+                            <a href="/post?id=${post.getId()}">${post.getTitle()} </a>
+                        </div>
+                        <div class="text-lg">
+                            <span>작성자 아이디 : ${post.getAuthor()}</span>
+                        </div>
+                    </div>
+                </li>
+            </c:forEach>
+        </ul>
     </body>
 </html>
