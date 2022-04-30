@@ -1,17 +1,12 @@
 package com.nhnacademy;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -20,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.stubbing.OngoingStubbing;
 
 class FrontServletTest {
     FrontServlet frontServlet = new FrontServlet();
@@ -39,7 +33,7 @@ class FrontServletTest {
         RequestDispatcher dispatcher = myRequestDispatcher.dispatcher;
 
         when(req.getRequestDispatcher("/error.jsp")).thenReturn(dispatcher);
-        when(req.getServletPath()).thenThrow(NullPointerException.class);
+        when(req.getServletPath()).thenThrow(new NullPointerException());
 
         frontServlet.service(req, res);
 
