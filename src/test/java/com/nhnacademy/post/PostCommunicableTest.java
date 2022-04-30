@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,18 +33,20 @@ class PostCommunicableTest {
     void postPostTest() {
         api = new PostPost(repository);
         List<Post> postList = new ArrayList<>();
-        postList.add(any());
 
+        HttpSession sessionMock = mock(HttpSession.class);
         // 게시글 추가
         when(req.getParameter("title")).thenReturn("example");
         when(req.getParameter("content")).thenReturn("examP content");
         when(req.getParameter("author")).thenReturn("user1");
+        when(req.getSession(false)).thenReturn(sessionMock);
+        when(sessionMock.getAttribute("id")).thenReturn("author");
 
         when(repository.getPosts()).thenReturn(postList);
         when(repository.register(any())).thenReturn(2L);
 
         // 게시글 패이지로 이동
-        assertThat(api.communicate(req, res)).isEqualTo("/posts?id=2.nhn");
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/post.nhn?id=2");
     }
 
     @Test
@@ -65,7 +68,7 @@ class PostCommunicableTest {
         when(repository.getPostById(2)).thenReturn(modifiedPost);
         when(repository.modify(modifiedPost)).thenReturn(modifiedPost);
 
-        assertThat(api.communicate(req, res)).isEqualTo("/post.nhn?id=2");
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/post.nhn?id=2");
     }
 
     @Test
@@ -77,14 +80,14 @@ class PostCommunicableTest {
         when(req.getParameter("id")).thenReturn("1");
         when(repository.remove(1L)).thenReturn(deleteTarget);
 
-        assertThat(api.communicate(req, res)).isEqualTo("/posts.nhn");
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/posts.nhn");
     }
 
     @Test
     @DisplayName("전체 게시판을 조회한다.")
     void postsInquireTest() {
         api = new PostListGet(repository);
-        assertThat(api.communicate(req, res)).isEqualTo("index.jsp");
+        assertThat(api.communicate(req, res)).isEqualTo("/index.jsp");
     }
 
     @Test

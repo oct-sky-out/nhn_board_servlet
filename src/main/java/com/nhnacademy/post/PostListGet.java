@@ -14,6 +14,6 @@ public class PostListGet implements Communicable {
     @Override
     public String communicate(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute("postList", repository.getPosts());
-        return "index.jsp";
+        return "/index.jsp";
     }
 }

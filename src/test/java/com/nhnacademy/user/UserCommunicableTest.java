@@ -8,6 +8,7 @@ import com.nhnacademy.commnicate.Communicable;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,6 +33,14 @@ public class UserCommunicableTest {
         api = new UserGet(repository);
         String userId = "exampleID";
         when(req.getParameter("id")).thenReturn(userId);
+        when(req.getParameter("id")).thenReturn(userId);
+        when(repository.getUserById(userId)).thenReturn(
+            new User(userId, "123", "exam", "")
+        );
+
+        HttpSession session = mock(HttpSession.class);
+        when(req.getSession(false)).thenReturn(session);
+        when(session.getAttribute("id")).thenReturn(userId);
 
         assertThat(api.communicate(req, res)).isEqualTo("/user.jsp?id=" + userId);
     }

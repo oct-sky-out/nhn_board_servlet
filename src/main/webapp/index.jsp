@@ -8,13 +8,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="${cookie.lang.value}">
     <head>
         <jsp:include page="palette/prettyTools.jsp"/>
         <title>게시글 | 메인</title>
     </head>
     <body>
-        <jsp:include page="components/header.jsp"/>
+        <jsp:include page="/components/header.jsp"/>
         <div class="flex justify-end mx-5 my-10">
             <button class="text-2xl button is-success"><a href="/post/create.jsp">게시글 작성</a></button>
         </div>
