@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import jdk.jfr.Description;
-import org.assertj.core.internal.bytebuddy.description.modifier.Ownership;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,7 +57,7 @@ public class UserCommunicableTest {
 
     @Test
     @DisplayName("관리자가 수정함. 수정 완료된 후 redirect:/user.nhn?id=userID 로 이동한다.")
-    @Description("/userList.nhn는 userListGet으로 이동함을 뜻함.")
+    @Description("/user.nhn는 userGet으로 이동함을 뜻함.")
     void userPutTest() {
         api = new UserPut(repository);
         String userId = "exampleId";
@@ -67,7 +66,19 @@ public class UserCommunicableTest {
             new User(userId, "123", "example name", null)
         );
 
-
         assertThat(api.communicate(req, res)).isEqualTo("redirect:/user.nhn?id=" + userId);
+    }
+
+    @Test
+    @DisplayName("관리자가 유저를 삭제함. 삭제 완료된 후 redirect:/userList.nhn로 이동한다.")
+    void userDeleteTest() {
+        api = new UserDelete(repository);
+        String userId = "exampleId";
+        User user = new User(userId, "123", "example name", null);
+        when(req.getParameter("id")).thenReturn(userId);
+        when(repository.getUserById(userId)).thenReturn(user);
+        when(repository.remove(user)).thenReturn(user);
+
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/userList.nhn");
     }
 }
