@@ -25,6 +25,10 @@ public class User {
         this.profileName = profileName;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPassword() {
         return this.password;
     }
