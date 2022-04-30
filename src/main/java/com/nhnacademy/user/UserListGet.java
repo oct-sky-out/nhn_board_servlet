@@ -14,9 +14,10 @@ public class UserListGet implements Communicable {
 
     @Override
     public String communicate(HttpServletRequest req, HttpServletResponse resp) {
+        repository.add(new User("1", "123", "1234", null));
         List<User> userList = repository.getAllUser();
         req.setAttribute("userList", userList);
 
-        return "/userList.jsp";
+        return "/users.jsp";
     }
 }

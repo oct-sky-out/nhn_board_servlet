@@ -1,13 +1,7 @@
 package com.nhnacademy.frontservlet;
 
-import static com.nhnacademy.frontservlet.ControllerProtocol.DELETE;
 import static com.nhnacademy.frontservlet.ControllerProtocol.GET;
 import static com.nhnacademy.frontservlet.ControllerProtocol.POST;
-import static com.nhnacademy.frontservlet.ControllerProtocol.POST_LIST_PATH;
-import static com.nhnacademy.frontservlet.ControllerProtocol.POST_PATH;
-import static com.nhnacademy.frontservlet.ControllerProtocol.PUT;
-import static com.nhnacademy.frontservlet.ControllerProtocol.USER_LIST_PATH;
-import static com.nhnacademy.frontservlet.ControllerProtocol.USER_PATH;
 import static com.nhnacademy.frontservlet.ControllerProtocol.generate;
 
 import com.nhnacademy.commnicate.Communicable;
@@ -16,6 +10,7 @@ import com.nhnacademy.post.PostGet;
 import com.nhnacademy.post.PostListGet;
 import com.nhnacademy.post.PostPost;
 import com.nhnacademy.post.PostRepository;
+import com.nhnacademy.user.LoginPost;
 import com.nhnacademy.user.UserDelete;
 import com.nhnacademy.user.UserGet;
 import com.nhnacademy.user.UserListGet;
@@ -26,64 +21,70 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public enum ControllerUtil implements ControllerConstructable {
-    USER_GET(generate(USER_PATH, GET)){
+    USER_GET(generate("/user.nhn", GET)){
         @Override
         public Communicable construct() {
             return new UserGet(UserRepository.INSTANCE);
         }
     },
-    USER_POST(generate(USER_PATH, POST)){
+    USER_POST(generate("/user.nhn", POST)){
         @Override
         public Communicable construct() {
             return new UserPost(UserRepository.INSTANCE);
         }
     },
-    USER_PUT(generate(USER_PATH, PUT)){
+    USER_PUT(generate("/user-modify.nhn", POST)){
         @Override
         public Communicable construct() {
             return new UserPut(UserRepository.INSTANCE);
         }
     },
-    USER_DELETE(generate(USER_PATH, DELETE)){
+    USER_DELETE(generate("/user-delete.nhn", POST)){
         @Override
         public Communicable construct() {
             return new UserDelete(UserRepository.INSTANCE);
         }
     },
-    USER_LIST_GET(generate(USER_LIST_PATH, GET)){
+    USER_LIST_GET(generate("/users.nhn", GET)){
         @Override
         public Communicable construct() {
             return new UserListGet(UserRepository.INSTANCE);
         }
     },
-    POST_GET(generate(POST_PATH, GET)){
+    POST_GET(generate("/post.nhn", GET)){
         @Override
         public Communicable construct() {
             return new PostGet(PostRepository.INSTANCE);
         }
     },
-    POST_POST(generate(POST_PATH, POST)){
+    POST_POST(generate("/post.nhn", POST)){
         @Override
         public Communicable construct() {
             return new PostPost(PostRepository.INSTANCE);
         }
     },
-    POST_PUT(generate(POST_PATH, PUT)){
+    POST_PUT(generate("/post-modify.nhn", POST)){
         @Override
         public Communicable construct() {
             return new PostPost(PostRepository.INSTANCE);
         }
     },
-    POST_DELETE(generate(POST_PATH, DELETE)){
+    POST_DELETE(generate("/post-delete", POST)){
         @Override
         public Communicable construct() {
             return new PostDelete(PostRepository.INSTANCE);
         }
     },
-    POST_LIST_GET(generate(POST_LIST_PATH, GET)){
+    POST_LIST_GET(generate("/posts.nhn", GET)){
         @Override
         public Communicable construct() {
             return new PostListGet(PostRepository.INSTANCE);
+        }
+    },
+    LOGIN_POST(generate("/login.nhn", POST)){
+        @Override
+        public Communicable construct() {
+            return new LoginPost(UserRepository.INSTANCE);
         }
     };
 

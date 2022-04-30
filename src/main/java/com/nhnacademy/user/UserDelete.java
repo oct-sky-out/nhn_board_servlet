@@ -18,6 +18,6 @@ public class UserDelete implements Communicable {
 
         repository.remove(deleteUserTarget);
 
-        return "redirect:/userList.nhn";
+        return "redirect:/users.nhn";
     }
 }

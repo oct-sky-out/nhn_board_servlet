@@ -1,7 +1,7 @@
 package com.nhnacademy.user;
 
 public class User {
-    private String id;
+    private final String id;
     private String password;
     private String name;
     private String profileName;
@@ -27,6 +27,10 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getPassword() {

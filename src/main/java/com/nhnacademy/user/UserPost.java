@@ -13,15 +13,15 @@ public class UserPost implements Communicable {
 
     @Override
     public String communicate(HttpServletRequest req, HttpServletResponse resp) {
-        String id = req.getParameter("id");
-        String password = req.getParameter("password");
-        String name = req.getParameter("name");
-        String fileName = req.getParameter("file");
+        String id = (String) req.getAttribute("id");
+        String password = (String) req.getAttribute("password");
+        String name = (String) req.getAttribute("name");
+        String fileName = (String) req.getAttribute("imageName");
 
         User user = new User(id, password, name, fileName);
 
         repository.add(user);
 
-        return "redirect:/userList.nhn";
+        return "redirect:/users.nhn";
     }
 }

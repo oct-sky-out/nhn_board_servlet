@@ -43,7 +43,7 @@ public class UserCommunicableTest {
 
         when(repository.getAllUser()).thenReturn(new ArrayList<>());
 
-        assertThat(api.communicate(req, res)).isEqualTo("/userList.jsp");
+        assertThat(api.communicate(req, res)).isEqualTo("/users.jsp");
     }
 
     @Test
@@ -52,7 +52,7 @@ public class UserCommunicableTest {
     void userPostTest() {
         api = new UserPost(repository);
 
-        assertThat(api.communicate(req, res)).isEqualTo("redirect:/userList.nhn");
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/users.nhn");
     }
 
     @Test
@@ -79,6 +79,6 @@ public class UserCommunicableTest {
         when(repository.getUserById(userId)).thenReturn(user);
         when(repository.remove(user)).thenReturn(user);
 
-        assertThat(api.communicate(req, res)).isEqualTo("redirect:/userList.nhn");
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/users.nhn");
     }
 }
