@@ -17,6 +17,6 @@ public class Logout implements Communicable {
             req.getServletContext().setAttribute("logged", --logged);
         }
 
-        return "redirect:/posts.nhn";
+        return "redirect:/posts.nhn?pageNo=1&size=10";
     }
 }

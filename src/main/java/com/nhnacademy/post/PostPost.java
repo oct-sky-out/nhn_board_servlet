@@ -20,7 +20,7 @@ public class PostPost implements Communicable {
         String content = req.getParameter("content");
 
         HttpSession session = req.getSession(false);
-        int postsCount = repository.getPosts().size() + 1;
+        int postsCount = repository.getPosts().size();
         String author = (String) session.getAttribute("id");
 
         Post post = createPost(postsCount, title, content, author);

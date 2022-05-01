@@ -22,7 +22,7 @@ public class LoginPost implements Communicable {
 
         if(checkAdmin(id, password, adminUser)){
             setSession(req, id);
-            return "redirect:/posts.nhn";
+            return "redirect:/posts.nhn?pageNo=1&size=10";
         }
 
         User user = repository.getUserById(id);
@@ -31,7 +31,7 @@ public class LoginPost implements Communicable {
         }
 
         setSession(req, id);
-        return "redirect:/posts.nhn";
+        return "redirect:/posts.nhn?pageNo=1&size=10";
     }
 
     private boolean checkAdmin(String id, String password, AdminUser adminUser) {

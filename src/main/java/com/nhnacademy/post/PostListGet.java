@@ -13,7 +13,11 @@ public class PostListGet implements Communicable {
 
     @Override
     public String communicate(HttpServletRequest req, HttpServletResponse resp) {
-        req.setAttribute("postList", repository.getPosts());
+        int pageNo = Integer.parseInt(req.getParameter("pageNo"));
+        int size = Integer.parseInt(req.getParameter("size"));
+        Page<Post> postPagination = repository.getPagePosts(pageNo, size);
+
+        req.setAttribute("postList", postPagination);
         return "/index.jsp";
     }
 }

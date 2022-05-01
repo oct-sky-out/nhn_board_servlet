@@ -15,7 +15,7 @@
         <!-- Left side -->
         <div class="level-left">
             <div class="level-item cursor-pointer">
-                <a href="/posts.nhn"><img src="../imgs/main.svg" class="bg-no-repeat" alt="logo"></a>
+                <a href="/posts.nhn?pageNo=1&size=10"><img src="../imgs/main.svg" class="bg-no-repeat" alt="logo"></a>
             </div>
         </div>
 

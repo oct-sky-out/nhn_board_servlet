@@ -48,7 +48,7 @@
         </div>
         <p class="text-xl">${post.getContent()}</p>
         <div class="is-boxed text-xl flex justify-end">
-            <a href="/posts.nhn">
+            <a href="/posts.nhn?pageNo=1&size=10">
                 <button class="button is-success"><fmt:message key="go_back"/></button>
             </a>
         </div>

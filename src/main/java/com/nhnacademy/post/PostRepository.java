@@ -9,8 +9,7 @@ public class PostRepository implements PostCrud {
     public static final PostRepository INSTANCE = new PostRepository();
     private final Map<Long, Post> postMap = new HashMap<>();
 
-    private PostRepository() {
-    }
+    private PostRepository() {}
 
     @Override
     public long register(Post post) {
@@ -36,5 +35,10 @@ public class PostRepository implements PostCrud {
     @Override
     public List<Post> getPosts() {
         return new ArrayList<>(this.postMap.values());
+    }
+
+    @Override
+    public Page<Post> getPagePosts(int page, int pageSize) {
+        return new Page<>(new ArrayList<>(this.postMap.values()), page, pageSize);
     }
 }

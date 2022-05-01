@@ -80,7 +80,7 @@ class PostCommunicableTest {
         when(req.getParameter("id")).thenReturn("1");
         when(repository.remove(1L)).thenReturn(deleteTarget);
 
-        assertThat(api.communicate(req, res)).isEqualTo("redirect:/posts.nhn");
+        assertThat(api.communicate(req, res)).isEqualTo("redirect:/posts.nhn?pageNo=1&size=10");
     }
 
     @Test

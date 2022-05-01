@@ -15,8 +15,7 @@ public class PostDelete implements Communicable {
     @Override
     public String communicate(HttpServletRequest req, HttpServletResponse resp) {
         long id = Long.parseLong(req.getParameter("id"));
-        // TODO : 현재 로그인 된 유저의 동일한 글인지 확인 필요
         repository.remove(id);
-        return "redirect:/posts.nhn";
+        return "redirect:/posts.nhn?pageNo=1&size=10";
     }
 }

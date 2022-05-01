@@ -12,4 +12,6 @@ public interface PostCrud {
     Post getPostById(long id);
 
     List<Post> getPosts();
+
+    Page<Post> getPagePosts(int page, int pageSize);
 }

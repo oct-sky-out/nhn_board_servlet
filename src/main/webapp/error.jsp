@@ -26,7 +26,7 @@
                 </span>
             </div>
             <div class="flex justify-end">
-                <a href="/posts.nhn">
+                <a href="/posts.nhn?pageNo=1&size=10">
                     <button class="button is-success"><fmt:message key="main_page"/></button>
                 </a>
             </div>
