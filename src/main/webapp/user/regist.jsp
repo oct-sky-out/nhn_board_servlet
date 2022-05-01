@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="w-screen">
-    <form action="/profile" method="post" enctype="multipart/form-data" class="uploader">
+    <form action="/profile.nhn" method="post" enctype="multipart/form-data" class="uploader">
         <div class="w-64 mx-auto my-10 space-y-10">
             <div class="text-xl">
                 <div class="is-boxed">

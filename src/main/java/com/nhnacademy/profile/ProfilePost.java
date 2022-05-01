@@ -1,5 +1,6 @@
 package com.nhnacademy.profile;
 
+import com.nhnacademy.commnicate.Communicable;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,12 +16,11 @@ import javax.servlet.http.Part;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@WebServlet(name = "profilePost", urlPatterns = "/profile")
 @MultipartConfig(
     location = "/tmp/", // 서버에 저장될 경로
     fileSizeThreshold = 1024
 )
-public class ProfilePost extends HttpServlet {
+public class ProfilePost implements Communicable {
     private static final String CONTENT_DISPOSITION = "Content-Disposition";
     private static final String UPLOAD_DIR = ProfilePost.class
         .getClassLoader()
@@ -28,25 +28,7 @@ public class ProfilePost extends HttpServlet {
         .getPath();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        resp.setContentType("image/jpeg");
-        String fileName = req.getParameter("fileName");
-        if(Objects.isNull(fileName)){
-            return;
-        }
-
-        try (FileInputStream fis = new FileInputStream(UPLOAD_DIR + "/" + fileName);
-             BufferedOutputStream bout = new BufferedOutputStream(resp.getOutputStream())
-        ) {
-            byte[] image = fis.readAllBytes();
-            bout.write(image, 0, image.length);
-        } catch (IOException e) {
-            log.error("", e);
-        }
-    }
-
-    @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    public String communicate(HttpServletRequest req, HttpServletResponse resp) {
         try {
         Part imagePart = req.getPart("image");
         String contentDisposition = imagePart.getHeader(CONTENT_DISPOSITION);
@@ -64,11 +46,11 @@ public class ProfilePost extends HttpServlet {
         req.setAttribute("password", password);
         req.setAttribute("imageName", fileName);
 
-        req.getRequestDispatcher("/user.nhn")
-            .forward(req, resp);
+        return "forward:/user.nhn";
         }catch (ServletException | IOException e)  {
             log.error("", e);
         }
+        throw new ImageUploadException("이미지 업로드 실패");
     }
 
     private String extractFileName(String contentDisposition) {

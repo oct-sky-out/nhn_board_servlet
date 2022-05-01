@@ -2,6 +2,7 @@ package com.nhnacademy.frontservlet;
 
 import com.nhnacademy.commnicate.Communicable;
 import java.io.IOException;
+import java.util.Objects;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,8 +31,14 @@ public class FrontServlet extends HttpServlet {
 
             String view = controller.communicate(req, resp);
 
+            if(Objects.isNull(view)){
+                return;
+            }
+
             if (view.startsWith(REDIRECT_TYPE)){
                 resp.sendRedirect(view.substring(REDIRECT_TYPE.length()));
+            } else if(view.startsWith("forward:")){
+                req.getRequestDispatcher(view.substring("forward:".length())).forward(req, resp);
             } else {
                 req.getRequestDispatcher(view).include(req, resp);
             }

@@ -11,6 +11,8 @@ import com.nhnacademy.post.PostListGet;
 import com.nhnacademy.post.PostPost;
 import com.nhnacademy.post.PostPut;
 import com.nhnacademy.post.PostRepository;
+import com.nhnacademy.profile.ProfileGet;
+import com.nhnacademy.profile.ProfilePost;
 import com.nhnacademy.user.LoginPost;
 import com.nhnacademy.user.Logout;
 import com.nhnacademy.user.UserDelete;
@@ -93,6 +95,18 @@ public enum ControllerUtil implements ControllerConstructable {
         @Override
         public Communicable construct() {
             return new Logout();
+        }
+    },
+    PROFILE_GET(generate("/profile.nhn", GET)){
+        @Override
+        public Communicable construct() {
+            return new ProfileGet();
+        }
+    },
+    PROFILE_POST(generate("/profile.nhn", POST)){
+        @Override
+        public Communicable construct() {
+            return new ProfilePost();
         }
     };
 

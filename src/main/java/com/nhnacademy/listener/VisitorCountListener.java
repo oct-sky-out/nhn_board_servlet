@@ -27,7 +27,6 @@ public class VisitorCountListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         sce.getServletContext().setAttribute("visitor", visitorCounter.decrementAndGet());
-
         storeUsers();
         storedPosts();
     }
