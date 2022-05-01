@@ -1,37 +1,36 @@
 package com.nhnacademy.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserRepository implements UserCrud {
-    public static final UserRepository INSTANCE = new UserRepository();
-    private final List<User> userList = new ArrayList<>();
-
-    private UserRepository() {
-    }
+    private final Map<String, User> userList = new HashMap<>();
 
     @Override
     public User add(User user) {
-        return null;
+        userList.put(user.getId(), user);
+        return user;
     }
 
     @Override
     public User modify(User user) {
-        return null;
+        return this.userList.replace(user.getId(), user);
     }
 
     @Override
     public User remove(User user) {
-        return null;
+        return this.userList.remove(user.getId());
     }
 
     @Override
     public User getUserById(String id) {
-        return null;
+        return userList.get(id);
     }
 
     @Override
     public List<User> getAllUser() {
-        return null;
+        return new ArrayList<>(this.userList.values());
     }
 }

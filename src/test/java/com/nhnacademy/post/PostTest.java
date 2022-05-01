@@ -1,4 +1,4 @@
-package com.nhnacademy.board;
+package com.nhnacademy.post;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
