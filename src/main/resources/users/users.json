@@ -1,0 +1,14 @@
+[
+  {
+    "id" : "admin",
+    "password" : "12345",
+    "name" : "Administrator",
+    "profileName" : null
+  },
+  {
+    "id" : "admin",
+    "password" : "12345",
+    "name" : "Administrator",
+    "profileName" : null
+  }
+]

@@ -1,15 +1,30 @@
 package com.nhnacademy.post;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.time.LocalDateTime;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class Post {
+    @JsonProperty("id")
     private long id;
+    @JsonProperty("title")
     private String title;
+    @JsonProperty("content")
     private String content;
+    @JsonProperty("author")
     private String author;
+    @JsonProperty("writeTime")
+    @JsonFormat(pattern = "yyyy-MM-dd kk:mm:ss")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime writeTime;
+    @JsonProperty("viewCount")
     private int viewCount;
 
     public void increaseViewCount(){

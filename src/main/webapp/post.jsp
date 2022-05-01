@@ -30,6 +30,7 @@
                 <h3><a href="/user.nhn?id=${post.getAuthor()}">
                     <fmt:message key="author"/> : ${post.getAuthor()}</a></h3>
                 <h3><javatime:format value="${post.getWriteTime()}" pattern="yyyy-MM-dd HH:mm:ss"/></h3>
+                <h3><fmt:message key="view_count"/> : ${post.getViewCount()}</h3>
                 <c:if test="${sessionScope.get(\"id\") eq post.getAuthor()}">
                     <div class="flex justify-center space-x-3">
                         <a href="/post.nhn?id=${post.getId()}&modify=true">

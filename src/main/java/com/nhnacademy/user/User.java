@@ -1,9 +1,15 @@
 package com.nhnacademy.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
-    private final String id;
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty("password")
     private String password;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("profileName")
     private String profileName;
 
     public User(String id, String password, String name, String profileName) {
@@ -13,9 +19,7 @@ public class User {
         this.profileName = profileName;
     }
 
-    public String getId() {
-        return this.id;
-    }
+    public User(){}
 
     public void setPassword(String password) {
         this.password = password;
@@ -29,12 +33,16 @@ public class User {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return this.id;
     }
 
     public String getPassword() {
         return this.password;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getProfileName() {
