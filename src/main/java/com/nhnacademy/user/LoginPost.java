@@ -26,7 +26,7 @@ public class LoginPost implements Communicable {
         }
 
         User user = repository.getUserById(id);
-        if(!Objects.equals(user.getId(), id) || !Objects.equals(user.getPassword(), password)) {
+        if(isInvalidUser(id, password, user)) {
             return "redirect:/loginForm.jsp";
         }
 
@@ -34,14 +34,19 @@ public class LoginPost implements Communicable {
         return "redirect:/posts.nhn";
     }
 
+    private boolean checkAdmin(String id, String password, AdminUser adminUser) {
+        return Objects.equals(adminUser.getId(), id) &&
+            Objects.equals(adminUser.getPassword(), password);
+    }
+
+    private boolean isInvalidUser(String id, String password, User user) {
+        return Objects.isNull(user) || !Objects.equals(user.getId(), id) ||
+            !Objects.equals(user.getPassword(), password);
+    }
+
     private void setSession(HttpServletRequest req, String id) {
         req.getSession().setAttribute("id", id);
         int logged = (int) req.getServletContext().getAttribute("logged");
         req.getSession().getServletContext().setAttribute("logged", ++logged);
-    }
-
-    private boolean checkAdmin(String id, String password, AdminUser adminUser) {
-        return Objects.equals(adminUser.getId(), id) &&
-            Objects.equals(adminUser.getPassword(), password);
     }
 }
