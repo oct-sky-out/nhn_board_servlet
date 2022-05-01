@@ -1,6 +1,9 @@
 package com.nhnacademy.frontservlet;
 
 import com.nhnacademy.commnicate.Communicable;
+import com.nhnacademy.post.PostCrud;
+import com.nhnacademy.user.UserCrud;
+import com.nhnacademy.user.UserRepository;
 import java.io.IOException;
 import java.util.Objects;
 import javax.servlet.ServletException;
@@ -26,6 +29,10 @@ public class FrontServlet extends HttpServlet {
         try {
             String path = req.getServletPath();
             String method = req.getMethod();
+            UserCrud userCrud = (UserCrud) req.getServletContext().getAttribute("userRepository");
+            PostCrud postCrud = (PostCrud) req.getServletContext().getAttribute("postRepository");
+            ControllerUtil.setUserRepository(userCrud);
+            ControllerUtil.setPostRepository(postCrud);
             ControllerProtocol protocol = new ControllerProtocol(path, method);
             Communicable controller = ControllerUtil.getControllerByProtocol(protocol);
 

@@ -19,7 +19,7 @@ class PostCrudTest {
 
     @BeforeEach
     void setUp() {
-        postCrud = PostRepository.INSTANCE;
+        postCrud = new PostRepository();
         post = mock(Post.class);
     }
 

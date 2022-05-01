@@ -1,8 +1,10 @@
 package com.nhnacademy.listener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhnacademy.post.PostCrud;
 import com.nhnacademy.post.PostRepository;
 import com.nhnacademy.user.User;
+import com.nhnacademy.user.UserCrud;
 import com.nhnacademy.user.UserRepository;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,29 +29,32 @@ public class VisitorCountListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         sce.getServletContext().setAttribute("visitor", visitorCounter.decrementAndGet());
-        storeUsers();
-        storedPosts();
+        UserCrud userCrud = (UserCrud) sce.getServletContext().getAttribute("userRepository");
+        PostCrud postCrud = (PostCrud) sce.getServletContext().getAttribute("postRepository");
+        storeUsers(userCrud);
+        storePosts(postCrud);
     }
 
-    private void storedPosts() {
+    private void storeUsers(UserCrud userCrud) {
         try (OutputStream out = new FileOutputStream(
             VisitorCountListener.class.getClassLoader().getResource("/users/users.json").getPath())) {
             ObjectMapper mapper = new ObjectMapper();
-            User admin  = UserRepository.INSTANCE.getUserById("admin");
-            UserRepository.INSTANCE.remove(admin);
+            User admin  = userCrud.getUserById("admin");
+            userCrud.remove(admin);
+
             mapper.writerWithDefaultPrettyPrinter()
-                .writeValue(out, UserRepository.INSTANCE.getAllUser());
+                .writeValue(out, userCrud.getAllUser());
         } catch (IOException e) {
             log.error("", e);
         }
     }
 
-    private void storeUsers() {
+    private void storePosts(PostCrud postCrud) {
         try (OutputStream out = new FileOutputStream(
             VisitorCountListener.class.getClassLoader().getResource("/posts/posts.json").getPath())) {
             ObjectMapper mapper = new ObjectMapper();
 
-            mapper.writerWithDefaultPrettyPrinter().writeValue(out, PostRepository.INSTANCE.getPosts());
+            mapper.writerWithDefaultPrettyPrinter().writeValue(out, postCrud.getPosts());
         } catch (IOException e) {
             log.error("", e);
         }

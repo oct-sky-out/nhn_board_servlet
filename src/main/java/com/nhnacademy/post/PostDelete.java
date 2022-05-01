@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class PostDelete implements Communicable {
-    private final PostRepository repository;
+    private final PostCrud repository;
 
-    public PostDelete(PostRepository repository) {
+    public PostDelete(PostCrud repository) {
         this.repository = repository;
     }
 

@@ -8,9 +8,9 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionListener;
 
 public class PostPost implements Communicable {
-    private final PostRepository repository;
+    private final PostCrud repository;
 
-    public PostPost(PostRepository repository) {
+    public PostPost(PostCrud repository) {
         this.repository = repository;
     }
 

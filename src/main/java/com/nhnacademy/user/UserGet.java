@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserGet implements Communicable {
-    private final UserRepository repository;
+    private final UserCrud repository;
 
-    public UserGet(UserRepository repository) {
+    public UserGet(UserCrud repository) {
         this.repository = repository;
     }
 

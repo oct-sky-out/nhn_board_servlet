@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class PostListGet implements Communicable {
-    private final PostRepository repository;
+    private final PostCrud repository;
 
-    public PostListGet(PostRepository repository) {
+    public PostListGet(PostCrud repository) {
         this.repository = repository;
     }
 

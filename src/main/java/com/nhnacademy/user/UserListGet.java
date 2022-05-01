@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserListGet implements Communicable {
-    private final UserRepository repository;
+    private final UserCrud repository;
 
-    public UserListGet(UserRepository repository) {
+    public UserListGet(UserCrud repository) {
         this.repository = repository;
     }
 
     @Override
     public String communicate(HttpServletRequest req, HttpServletResponse resp) {
-        repository.add(new User("1", "123", "1234", null));
         List<User> userList = repository.getAllUser();
         req.setAttribute("userList", userList);
 

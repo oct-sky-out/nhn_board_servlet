@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserDelete implements Communicable {
-    private final UserRepository repository;
+    private final UserCrud repository;
 
-    public UserDelete(UserRepository repository) {
+    public UserDelete(UserCrud repository) {
         this.repository = repository;
     }
 

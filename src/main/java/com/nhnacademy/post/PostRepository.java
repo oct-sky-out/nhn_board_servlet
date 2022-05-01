@@ -9,8 +9,6 @@ public class PostRepository implements PostCrud {
     public static final PostRepository INSTANCE = new PostRepository();
     private final Map<Long, Post> postMap = new HashMap<>();
 
-    private PostRepository() {}
-
     @Override
     public long register(Post post) {
             postMap.put(post.getId(), post);

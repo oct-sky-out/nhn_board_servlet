@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class PostGet implements Communicable {
-    private final PostRepository repository;
+    private final PostCrud repository;
 
-    public PostGet(PostRepository repository) {
+    public PostGet(PostCrud repository) {
         this.repository = repository;
     }
 

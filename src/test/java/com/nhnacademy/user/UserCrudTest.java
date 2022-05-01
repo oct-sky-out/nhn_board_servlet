@@ -16,7 +16,7 @@ class UserCrudTest {
     @BeforeEach
     void setUp() {
         user = mock(User.class);
-        userCrud = UserRepository.INSTANCE;
+        userCrud = new UserRepository();
     }
 
     @Test

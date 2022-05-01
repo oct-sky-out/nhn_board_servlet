@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class LoginPost implements Communicable {
-    private final UserRepository repository;
-    private final AtomicInteger loggedPeople = new AtomicInteger(0);
+    private final UserCrud repository;
 
-    public LoginPost(UserRepository repository) {
+    public LoginPost(UserCrud repository) {
         this.repository = repository;
     }
 

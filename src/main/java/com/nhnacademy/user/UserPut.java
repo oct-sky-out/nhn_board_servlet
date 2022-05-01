@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserPut implements Communicable {
-    private final UserRepository repository;
+    private final UserCrud repository;
 
-    public UserPut(UserRepository repository) {
+    public UserPut(UserCrud repository) {
         this.repository = repository;
     }
 

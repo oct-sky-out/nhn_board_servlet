@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class PostPut implements Communicable {
-    private final PostRepository repository;
+    private final PostCrud repository;
 
-    public PostPut(PostRepository repository) {
+    public PostPut(PostCrud repository) {
         this.repository = repository;
     }
 
@@ -17,7 +17,6 @@ public class PostPut implements Communicable {
         long id = Long.parseLong(req.getParameter("id"));
         String title = req.getParameter("title");
         String content = req.getParameter("content");
-        // TODO : 유저의 이름이 같으면 수정권한을 줌.
 
         Post post = repository.getPostById(id);
         post.setContent(content);
