@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: oct_sky_out
@@ -6,14 +7,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setLocale value="${cookie.lang.value}"/>
+<fmt:bundle basename="userRegist">
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${cookie.lang.value}}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jsp:include page="../palette/prettyTools.jsp"/>
-    <title>회원생성</title>
+    <title><fmt:message key="regist_title"/></title>
 </head>
 <body>
 <div class="w-screen">
@@ -22,19 +25,19 @@
             <div class="text-xl">
                 <div class="is-boxed">
                     <label>
-                        아이디
+                        <fmt:message key="id"/>
                         <input type="text" name="id">
                     </label>
                 </div>
                 <div class="is-boxed">
                     <label>
-                        사용자명
+                        <fmt:message key="user_name"/>
                         <input type="text" name="name">
                     </label>
                 </div>
                 <div class="is-boxed">
                     <label>
-                        비밀번호
+                        <fmt:message key="password"/>
                         <input type="password" name="password">
                     </label>
                 </div>
@@ -45,14 +48,14 @@
                                    accept="image/*">
                             <span class="file-cta">
                                 <span class="file-label">
-                                  파일을 선택하세요.
+                                    <fmt:message key="file_title"/>
                                 </span>
                             </span>
-                            <span class="file-name text-center">이미지 파일만 허용합니다.</span>
+                            <span class="file-name text-center"><fmt:message key="file_info"/></span>
                         </label>
                     </div>
                     <div class="w-full mt-2 file-label">
-                        <input type="submit" class="button is-success" value="유저등록">
+                        <input type="submit" class="button is-success" value="<fmt:message key="register"/>">
                     </div>
                 </div>
             </div>
@@ -63,3 +66,4 @@
 <script src="upload.js"></script>
 </body>
 </html>
+</fmt:bundle>

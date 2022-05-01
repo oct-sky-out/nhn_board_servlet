@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: oct_sky_out
@@ -6,14 +7,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<fmt:setLocale value="${cookie.lang.value}"/>
+<fmt:bundle basename="postCreate">
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="${cookie.lang.value}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jsp:include page="../palette/prettyTools.jsp"/>
-    <title>게시글 작성</title>
+    <title><fmt:message key="post_write"/></title>
 </head>
 <body>
 <jsp:include page="../components/header.jsp"/>
@@ -23,20 +26,20 @@
             <div class="text-xl w-full space-y-10">
                 <div class="is-boxed text-2xl">
                     <label class="w-full">
-                        제목
+                        <fmt:message key="title"/>
                         <input class="w-full input is-success" type="text"
-                               placeholder="제목을 입력하세요." name="title">
+                               placeholder="<fmt:message key="title_placeholder"/>" name="title">
                     </label>
                 </div>
                 <div class="is-boxed text-xl">
                     <label>
-                        내용
+                        <fmt:message key="content"/>
                         <textarea name="content" class="resize-none textarea is-success"
-                                  placeholder="내용을 입력하세요"></textarea>
+                                  placeholder="<fmt:message key="content_placeholder"/>"></textarea>
                     </label>
                 </div>
                 <div class="is-boxed text-xl flex justify-end">
-                    <input class="button is-success" type="submit" value="등록">
+                    <input class="button is-success" type="submit" value="<fmt:message key="create"/>">
                 </div>
             </div>
         </div>
@@ -45,3 +48,4 @@
 <jsp:include page="../components/footer.jsp"/>
 </body>
 </html>
+</fmt:bundle>

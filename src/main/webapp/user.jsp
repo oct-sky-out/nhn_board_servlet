@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${cookie.lang.value}" />
 <fmt:bundle basename="user">
 <!DOCTYPE html>
 <html lang="${cookie.lang.value}">
-<fmt:setLocale value="${cookie.lang.value}" />
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,18 +40,17 @@
                     <span>
                         <fmt:message key="change_name"/> :
                     </span>
-                    <input class="input is-success" type="text" name="name">
+                    <input class="input is-success" type="text" name="name" value="${user.getName()}">
                 </div>
                 <div class="text-2xl">
                     <fmt:message key="change_password"/> :
-                    <input class="input is-success" type="pasword" name="password">
+                    <input class="input is-success" type="password" name="password" value="${user.getPassword()}">
                 </div>
                 </c:if>
                 <div>
                     <c:if test="${isAdmin eq true}">
-                        <fmt:message key="change"/>
                         <button type="submit" class="button is-success">
-                            정보 변경하기
+                            <fmt:message key="change"/>
                         </button>
                     </c:if>
                     <button type="submit" class="button is-success">

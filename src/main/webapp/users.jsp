@@ -9,10 +9,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:bundle basename="users"/>
+<fmt:setLocale value="${cookie.lang.value}"/>
+<fmt:bundle basename="users">
 <!DOCTYPE html>
 <html lang="${cookie.lang.value}">
-<fmt:setLocale value="${cookie.lang.value}" />
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,3 +63,4 @@
 <jsp:include page="components/footer.jsp"/>
 </body>
 </html>
+</fmt:bundle>
