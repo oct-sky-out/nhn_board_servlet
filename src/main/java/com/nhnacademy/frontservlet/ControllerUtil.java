@@ -5,115 +5,101 @@ import static com.nhnacademy.frontservlet.ControllerProtocol.POST;
 import static com.nhnacademy.frontservlet.ControllerProtocol.generate;
 
 import com.nhnacademy.commnicate.Communicable;
-import com.nhnacademy.post.PostCrud;
-import com.nhnacademy.post.PostDelete;
-import com.nhnacademy.post.PostGet;
-import com.nhnacademy.post.PostListGet;
-import com.nhnacademy.post.PostPost;
-import com.nhnacademy.post.PostPut;
-import com.nhnacademy.profile.ProfileGet;
-import com.nhnacademy.profile.ProfilePost;
-import com.nhnacademy.user.LoginPost;
-import com.nhnacademy.user.Logout;
-import com.nhnacademy.user.UserCrud;
-import com.nhnacademy.user.UserDelete;
-import com.nhnacademy.user.UserGet;
-import com.nhnacademy.user.UserListGet;
-import com.nhnacademy.user.UserPost;
-import com.nhnacademy.user.UserPut;
 import java.util.Arrays;
 import java.util.Objects;
+import javax.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public enum ControllerUtil implements ControllerConstructable {
     USER_GET(generate("/user.nhn", GET)) {
         @Override
         public Communicable construct() {
-            return new UserGet(userRepository);
+            return createController("userGet");
         }
     },
     USER_POST(generate("/user.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new UserPost(userRepository);
+            return createController("userPost");
         }
     },
     USER_PUT(generate("/user-modify.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new UserPut(userRepository);
+            return createController("userPut");
         }
     },
     USER_DELETE(generate("/user-delete.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new UserDelete(userRepository);
+            return createController("userDelete");
         }
     },
     USER_LIST_GET(generate("/users.nhn", GET)) {
         @Override
         public Communicable construct() {
-            return new UserListGet(userRepository);
+            return createController("userListGet");
         }
     },
     POST_GET(generate("/post.nhn", GET)) {
         @Override
         public Communicable construct() {
-            return new PostGet(postRepository);
+            return createController("postGet");
         }
     },
     POST_POST(generate("/post.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new PostPost(postRepository);
+            return createController("postPost");
         }
     },
     POST_PUT(generate("/post-modify.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new PostPut(postRepository);
+            return createController("postPut");
         }
     },
     POST_DELETE(generate("/post-delete.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new PostDelete(postRepository);
+            return createController("postDelete");
         }
     },
     POST_LIST_GET(generate("/posts.nhn", GET)) {
         @Override
         public Communicable construct() {
-            return new PostListGet(postRepository);
+            return createController("postListGet");
         }
     },
     LOGIN_POST(generate("/login.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new LoginPost(userRepository);
+            return createController("loginPost");
         }
     },
     LOGOUT_GET(generate("/logout.nhn", GET)) {
         @Override
         public Communicable construct() {
-            return new Logout();
+            return createController("logout");
         }
     },
     PROFILE_GET(generate("/profile.nhn", GET)) {
         @Override
         public Communicable construct() {
-            return new ProfileGet();
+            return createController("profileGet");
         }
     },
     PROFILE_POST(generate("/profile.nhn", POST)) {
         @Override
         public Communicable construct() {
-            return new ProfilePost();
+            return createController("profilePost");
         }
     };
 
 
-    private static UserCrud userRepository;
-    private static PostCrud postRepository;
     private final ControllerProtocol protocol;
+    private static HttpServletRequest request;
 
     ControllerUtil(ControllerProtocol protocol) {
         this.protocol = protocol;
@@ -132,11 +118,11 @@ public enum ControllerUtil implements ControllerConstructable {
         throw new NotMatchUrlException("페이지가 존재하지 않습니다.");
     }
 
-    public static void setUserRepository(UserCrud userRepository) {
-        ControllerUtil.userRepository = userRepository;
+    private static Communicable createController(String beanName){
+        return (Communicable) request.getServletContext().getAttribute(beanName);
     }
 
-    public static void setPostRepository(PostCrud postRepository) {
-        ControllerUtil.postRepository = postRepository;
+    public static void setRequest(HttpServletRequest request) {
+        ControllerUtil.request = request;
     }
 }

@@ -29,11 +29,9 @@ public class FrontServlet extends HttpServlet {
         try {
             String path = req.getServletPath();
             String method = req.getMethod();
-            UserCrud userCrud = (UserCrud) req.getServletContext().getAttribute("userRepository");
-            PostCrud postCrud = (PostCrud) req.getServletContext().getAttribute("postRepository");
-            ControllerUtil.setUserRepository(userCrud);
-            ControllerUtil.setPostRepository(postCrud);
             ControllerProtocol protocol = new ControllerProtocol(path, method);
+            
+            ControllerUtil.setRequest(req);
             Communicable controller = ControllerUtil.getControllerByProtocol(protocol);
 
             String view = controller.communicate(req, resp);

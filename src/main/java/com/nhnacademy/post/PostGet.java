@@ -4,10 +4,12 @@ import com.nhnacademy.commnicate.Communicable;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class PostGet implements Communicable {
     private final PostCrud repository;
 
+    @Autowired
     public PostGet(PostCrud repository) {
         this.repository = repository;
     }

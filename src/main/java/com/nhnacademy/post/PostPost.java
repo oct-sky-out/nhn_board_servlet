@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionListener;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class PostPost implements Communicable {
+public class  PostPost implements Communicable {
     private final PostCrud repository;
 
+    @Autowired
     public PostPost(PostCrud repository) {
         this.repository = repository;
     }

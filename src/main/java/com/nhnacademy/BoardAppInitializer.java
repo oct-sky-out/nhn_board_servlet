@@ -2,6 +2,8 @@ package com.nhnacademy;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhnacademy.commnicate.Communicable;
+import com.nhnacademy.exception.IntilaizeFailureException;
 import com.nhnacademy.post.Post;
 import com.nhnacademy.post.PostCrud;
 import com.nhnacademy.user.AdminUser;
@@ -15,6 +17,7 @@ import java.util.Set;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @Slf4j
@@ -28,6 +31,7 @@ public class BoardAppInitializer implements ServletContainerInitializer {
 
             storedUsersRead(userRepository);
             storedPostsRead(postRepository);
+            setController(context, servletContext);
 
             AdminUser adminUser = new AdminUser("admin", "1234", "관리자", null, true);
             userRepository.add(adminUser);
@@ -36,8 +40,30 @@ public class BoardAppInitializer implements ServletContainerInitializer {
             servletContext.setAttribute("logged", 0);
             servletContext.setAttribute("userRepository", userRepository);
             servletContext.setAttribute("postRepository", postRepository);
-
+        } catch (BeanCreationException e) {
+            throw new BeanCreationException("빈 생성에 실패했습니다.");
+        } catch (Exception e) {
+            throw new IntilaizeFailureException("서블릿 초기화에 실패했습니다." +
+                "message : " + e);
         }
+    }
+
+    private void setController(AnnotationConfigApplicationContext context,
+                               ServletContext servletContext) {
+        servletContext.setAttribute("userGet", context.getBean("userGet", Communicable.class));
+        servletContext.setAttribute("userPost", context.getBean("userPost", Communicable.class));
+        servletContext.setAttribute("userPut", context.getBean("userPut", Communicable.class));
+        servletContext.setAttribute("userDelete", context.getBean("userDelete", Communicable.class));
+        servletContext.setAttribute("userListGet", context.getBean("userListGet", Communicable.class));
+        servletContext.setAttribute("postGet", context.getBean("postGet", Communicable.class));
+        servletContext.setAttribute("postPost", context.getBean("postPost", Communicable.class));
+        servletContext.setAttribute("postPut", context.getBean("postPut", Communicable.class));
+        servletContext.setAttribute("postDelete", context.getBean("postDelete", Communicable.class));
+        servletContext.setAttribute("postListGet", context.getBean("postListGet", Communicable.class));
+        servletContext.setAttribute("loginPost", context.getBean("loginPost", Communicable.class));
+        servletContext.setAttribute("logout", context.getBean("logout", Communicable.class));
+        servletContext.setAttribute("profileGet", context.getBean("profileGet", Communicable.class));
+        servletContext.setAttribute("profilePost", context.getBean("profilePost", Communicable.class));
     }
 
     private void storedUsersRead(UserCrud userRepository) {

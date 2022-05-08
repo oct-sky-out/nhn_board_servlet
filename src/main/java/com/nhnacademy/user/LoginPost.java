@@ -5,10 +5,12 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class LoginPost implements Communicable {
     private final UserCrud repository;
 
+    @Autowired
     public LoginPost(UserCrud repository) {
         this.repository = repository;
     }

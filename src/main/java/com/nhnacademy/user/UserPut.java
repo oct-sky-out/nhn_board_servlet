@@ -3,10 +3,12 @@ package com.nhnacademy.user;
 import com.nhnacademy.commnicate.Communicable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserPut implements Communicable {
     private final UserCrud repository;
 
+    @Autowired
     public UserPut(UserCrud repository) {
         this.repository = repository;
     }
