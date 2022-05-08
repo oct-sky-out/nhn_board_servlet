@@ -37,6 +37,7 @@ public class LoginFilter implements Filter {
             !request.getRequestURI().contains("/posts") &&
             !request.getRequestURI().equals("/loginForm.jsp") &&
             !request.getRequestURI().contains("/img") &&
-            !request.getRequestURI().equals("/login.nhn");
+            !request.getRequestURI().equals("/login.nhn") &&
+            !request.getRequestURI().equals("/");
     }
 }
