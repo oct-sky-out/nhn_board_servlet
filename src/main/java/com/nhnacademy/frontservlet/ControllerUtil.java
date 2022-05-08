@@ -11,7 +11,6 @@ import com.nhnacademy.post.PostGet;
 import com.nhnacademy.post.PostListGet;
 import com.nhnacademy.post.PostPost;
 import com.nhnacademy.post.PostPut;
-import com.nhnacademy.post.PostRepository;
 import com.nhnacademy.profile.ProfileGet;
 import com.nhnacademy.profile.ProfilePost;
 import com.nhnacademy.user.LoginPost;
@@ -22,7 +21,6 @@ import com.nhnacademy.user.UserGet;
 import com.nhnacademy.user.UserListGet;
 import com.nhnacademy.user.UserPost;
 import com.nhnacademy.user.UserPut;
-import com.nhnacademy.user.UserRepository;
 import java.util.Arrays;
 import java.util.Objects;
 

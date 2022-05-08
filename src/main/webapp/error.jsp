@@ -22,7 +22,7 @@
             <div>
                 <h1 class="title is-1"><fmt:message key="error_title"/> :</h1>
                 <span class="text-xl">
-                        ${requestScope.erorrMsg}
+                        ${requestScope.errorMsg}
                 </span>
             </div>
             <div class="flex justify-end">

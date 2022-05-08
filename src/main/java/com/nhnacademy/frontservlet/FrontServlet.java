@@ -51,7 +51,7 @@ public class FrontServlet extends HttpServlet {
             }
         }catch (Exception e) {
             log.error("", e);
-            req.setAttribute("errorMsg", e.getMessage());
+            req.setAttribute("errorMsg", e);
             req.getRequestDispatcher("/error.jsp")
                 .forward(req, resp);
         }

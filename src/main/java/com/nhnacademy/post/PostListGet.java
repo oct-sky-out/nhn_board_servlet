@@ -13,11 +13,15 @@ public class PostListGet implements Communicable {
 
     @Override
     public String communicate(HttpServletRequest req, HttpServletResponse resp) {
-        int pageNo = Integer.parseInt(req.getParameter("pageNo"));
-        int size = Integer.parseInt(req.getParameter("size"));
-        Page<Post> postPagination = repository.getPagePosts(pageNo, size);
+        try{
+            int pageNo = Integer.parseInt(req.getParameter("pageNo"));
+            int size = Integer.parseInt(req.getParameter("size"));
+            Page<Post> postPagination = repository.getPagePosts(pageNo, size);
 
-        req.setAttribute("postList", postPagination);
-        return "/index.jsp";
+            req.setAttribute("postList", postPagination);
+            return "/index.jsp";
+        }catch (NumberFormatException e) {
+            return "posts.nhn?pageNo=1&size=10";
+        }
     }
 }

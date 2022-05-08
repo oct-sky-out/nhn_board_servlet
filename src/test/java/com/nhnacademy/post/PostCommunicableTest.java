@@ -87,6 +87,8 @@ class PostCommunicableTest {
     @DisplayName("전체 게시판을 조회한다.")
     void postsInquireTest() {
         api = new PostListGet(repository);
+        when(req.getParameter("pageNo")).thenReturn("10");
+        when(req.getParameter("size")).thenReturn("10");
         assertThat(api.communicate(req, res)).isEqualTo("/index.jsp");
     }
 
