@@ -20,25 +20,26 @@
 </head>
 <body>
 <div class="w-screen">
+    <jsp:include page="../components/header.jsp"/>
     <form action="/profile.nhn" method="post" enctype="multipart/form-data" class="uploader">
         <div class="w-64 mx-auto my-10 space-y-10">
-            <div class="text-xl">
+            <div class="text-xl space-y-10">
                 <div class="is-boxed">
                     <label>
                         <fmt:message key="id"/>
-                        <input type="text" name="id">
+                        <input type="text" name="id" class="input is-success">
                     </label>
                 </div>
                 <div class="is-boxed">
                     <label>
                         <fmt:message key="user_name"/>
-                        <input type="text" name="name">
+                        <input type="text" name="name" class="input is-success">
                     </label>
                 </div>
                 <div class="is-boxed">
                     <label>
                         <fmt:message key="password"/>
-                        <input type="password" name="password">
+                        <input type="password" name="password" class="input is-success">
                     </label>
                 </div>
                 <div class="file is-centered is-boxed is-success has-name flex-wrap">
